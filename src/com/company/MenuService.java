@@ -22,7 +22,6 @@ public class MenuService {
         toDo.setMapTaskFirstValue("10/07/2021", "Полить цветы");
         toDo.setMapTaskAddValue("10/07/2021", "Сходить в магазин за кормом для животных");
 
-
         Scanner in = new Scanner(System.in);
         Scanner intask = new Scanner(System.in);
         String choice = "";

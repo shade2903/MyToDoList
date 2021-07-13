@@ -1,6 +1,8 @@
 package com.company;
 
 
+import com.exception.IncorrectFormatDateException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
@@ -54,22 +56,38 @@ public class ToDo implements Serializable {
         mapToDO.get(date).add(number-1,new Task(task));
     }
     public void deleteListByNumber(String date, int number){
-        mapToDO.get(date).remove(number-1);
+        try {
+            mapToDO.get(date).remove(number-1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void getTaskNumber(String date, int number) {
 
-        System.out.println(mapToDO.get(date).get(number-1));
+        try {
+            System.out.println(mapToDO.get(date).get(number-1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void getStatusTaskCompleted(String date, int number) {
-        mapToDO.get(date).get(number-1).setStatus(Status.COMPLETED);
+        try {
+            mapToDO.get(date).get(number-1).setStatus(Status.COMPLETED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //меняет статус дела по обращению к индексу
 
     }
     public void getStatusTaskUncompleted(String date, int number) {
-        mapToDO.get(date).get(number-1).setStatus(Status.UNCOMPLETED);
+        try {
+            mapToDO.get(date).get(number-1).setStatus(Status.UNCOMPLETED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //меняет статус дела по обращению к индексу
 
     }
@@ -117,9 +135,10 @@ public class ToDo implements Serializable {
             System.out.println("\t"+"Date: "+ x);
            showTaskListByDate(x);
         }
-    }    public Set<String> returnKeyMap(){
-        return mapToDO.keySet();
     }
+
+
+//    stream.sorted().forEach(x -> System.out.println(x));
 
 
 
