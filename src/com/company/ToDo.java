@@ -18,6 +18,10 @@ public class ToDo implements Serializable {
         return mapToDO;
     }
 
+    public void setMapToDO(Map<String, List<Task>> mapToDO) {
+        this.mapToDO = mapToDO;
+    }
+
     FileWriter fw;
 
     {
@@ -75,7 +79,7 @@ public class ToDo implements Serializable {
 
     public void getStatusTaskCompleted(String date, int number) {
         try {
-            mapToDO.get(date).get(number-1).setStatus(Status.COMPLETED);
+            mapToDO.get(date).get(number-1).setStatus(Status.DONE);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +88,7 @@ public class ToDo implements Serializable {
     }
     public void getStatusTaskUncompleted(String date, int number) {
         try {
-            mapToDO.get(date).get(number-1).setStatus(Status.UNCOMPLETED);
+            mapToDO.get(date).get(number-1).setStatus(Status.DONE);
         } catch (Exception e) {
             e.printStackTrace();
         }

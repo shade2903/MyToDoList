@@ -7,7 +7,7 @@ public class Task implements Serializable {
     private Status status;
     public  Task(String task){
         this.task = task;
-        this.status = Status.UNCOMPLETED;
+        this.status = Status.UNDONE;
     }
 
     @Override

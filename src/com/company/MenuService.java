@@ -14,13 +14,19 @@ public class MenuService {
         ToDo toDo = new ToDo();
         DateTaskList dateTaskList = new DateTaskList();
 
-        toDo.setMapTaskFirstValue("12/07/2021", "Сходить в спортзал");
-        toDo.setMapTaskAddValue("12/07/2021", "Выгулять собаку");
-        toDo.setMapTaskFirstValue("13/07/2021", "Покормит собаку");
-        toDo.setMapTaskAddValue("13/07/2021", "Покормить кота");
-        toDo.setMapTaskAddValue("13/07/2021", "Убрать в квартире");
-        toDo.setMapTaskFirstValue("10/07/2021", "Полить цветы");
-        toDo.setMapTaskAddValue("10/07/2021", "Сходить в магазин за кормом для животных");
+//        toDo.setMapTaskFirstValue("12/07/2021", "Сходить в спортзал");
+//        toDo.setMapTaskAddValue("12/07/2021", "Выгулять собаку");
+//        toDo.setMapTaskFirstValue("13/07/2021", "Покормит собаку");
+//        toDo.setMapTaskAddValue("13/07/2021", "Покормить кота");
+//        toDo.setMapTaskAddValue("13/07/2021", "Убрать в квартире");
+//        toDo.setMapTaskFirstValue("10/07/2021", "Полить цветы");
+//        toDo.setMapTaskAddValue("10/07/2021", "Сходить в магазин за кормом для животных");
+        try {
+            toDo.setMapToDO( SaveFile.readFile());
+            SaveFile.readFile();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         Scanner in = new Scanner(System.in);
         Scanner intask = new Scanner(System.in);
@@ -135,6 +141,7 @@ public class MenuService {
                                 System.out.println("Весь список");
                                 toDo.printTasklist();
                                 SaveFile.saveInFileTxt(toDo.getMapToDO());
+                                SaveFile.serializationInFile(toDo.getMapToDO());
 
                                 break;
                             case "5":

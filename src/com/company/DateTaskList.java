@@ -19,6 +19,7 @@ public class DateTaskList {
         return listDate;
     }
 
+
     public void setListDate(ArrayList<LocalDate> listDate) {
         this.listDate = listDate;
     }
