@@ -7,12 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ToDo implements Serializable {
 
 
-   private Map<String, List<Task>> mapToDO = new HashMap<>();
+   private Map<String, List<Task>> mapToDO = new TreeMap<>();
 
     public Map<String, List<Task>> getMapToDO() {
         return mapToDO;
@@ -21,19 +22,6 @@ public class ToDo implements Serializable {
     public void setMapToDO(Map<String, List<Task>> mapToDO) {
         this.mapToDO = mapToDO;
     }
-
-    FileWriter fw;
-
-    {
-        try {
-            fw = new FileWriter("test.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
     public List<Task> addTask(String task) {
         List<Task> listTask = new ArrayList<>();
         listTask.add(new Task(task));
@@ -41,6 +29,7 @@ public class ToDo implements Serializable {
     }
 
     public void printTasklist()  {
+        mapToDO.keySet().stream().sorted().collect(Collectors.toList());
         for(String x : mapToDO.keySet()) {
             System.out.println("\t"+"Date: "+ x);
             for (int i = 0; i < mapToDO.get(x).size(); i++) {
@@ -51,9 +40,14 @@ public class ToDo implements Serializable {
     }
 
     public void showTaskListByDate(String date){
-        for (int i = 0; i < mapToDO.get(date).size(); i++) {
-            System.out.println(i+1+". "+mapToDO.get(date).get(i).toString());
+        mapToDO.keySet().stream().sorted().collect(Collectors.toList());
+        try {
+            for (int i = 0; i < mapToDO.get(date).size(); i++) {
+                System.out.println(i+1+". "+mapToDO.get(date).get(i).toString());
 
+            }
+        } catch (Exception e) {
+            System.out.println("Нет текущих задач на сегодня");
         }
     }
     public void editListOfCasesByNumber(String date, int number, String task){
@@ -133,16 +127,22 @@ public class ToDo implements Serializable {
     public void showAllDateList(){
         System.out.println("Список всех дат в списке: ");
         System.out.println(mapToDO.keySet());
+
     }
+
     public void showDateCurrentOfWeek(ArrayList<String> strDate){
-        for (String x : strDate) {
-            System.out.println("\t"+"Date: "+ x);
-           showTaskListByDate(x);
+        if(strDate.size()!=0) {
+            for (String x : strDate) {
+                System.out.println("\t" + "Date: " + x);
+                showTaskListByDate(x);
+            }
+        }else{
+            System.out.println("Нет дел на текущей неделе");
         }
     }
 
 
-//    stream.sorted().forEach(x -> System.out.println(x));
+
 
 
 

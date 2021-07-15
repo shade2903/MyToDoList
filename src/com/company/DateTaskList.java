@@ -28,17 +28,7 @@ public class DateTaskList {
     private final String text = dtf.format(LocalDateTime.now());
     private LocalDate currentDate = LocalDate.now();
 
-    public String ChekForOnFormatDate(String date) {
-        try {
-            LocalDate.parse(date, dtf);
-            return date;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return date;
-
-    }
 
     public String inPutDate() {
         String str;
