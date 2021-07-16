@@ -50,4 +50,12 @@ public class MyFile {
          fis.close();
          return map;
      }
+     public static boolean fileExist(String path){
+         File f = new File(path);
+         if(!f.exists()){
+             return true;
+                     }
+
+        return false;
+     }
 }

@@ -15,13 +15,14 @@ public class MenuService {
 
     public   void showMenu() throws IOException {
 
-
+if(MyFile.fileExist("toDoList.bin")){
         try {
             toDo.setMapToDO( MyFile.readFile());
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }}
+
 
 
         while (!choice.equals("4")) {
