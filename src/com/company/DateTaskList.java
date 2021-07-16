@@ -1,10 +1,5 @@
 package com.company;
 
-
-
-
-import com.exception.IncorrectFormatDateException;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,23 +7,11 @@ import java.util.*;
 
 public class DateTaskList {
 
-
     private ArrayList<LocalDate> listDate = new ArrayList<>();
-
-    public ArrayList<LocalDate> getListDate() {
-        return listDate;
-    }
-
-
-    public void setListDate(ArrayList<LocalDate> listDate) {
-        this.listDate = listDate;
-    }
 
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final String text = dtf.format(LocalDateTime.now());
     private LocalDate currentDate = LocalDate.now();
-
-
 
     public String inPutDate() {
         String str;
@@ -62,21 +45,22 @@ public class DateTaskList {
         return "null";
     }
 
-    public int beginOfTheWeek() {
-        return currentDate.getDayOfMonth() - (currentDate.getDayOfWeek().getValue() - 1);
+    private LocalDate beginOfTheWeek() {
+        return currentDate.minusDays(currentDate.getDayOfWeek().getValue() - 1);
     }
-
+    private  LocalDate endOfWeek(){
+        return beginOfTheWeek().plusDays(6);
+    }
 
     ArrayList<String> strDate = new ArrayList<>();
 
     public ArrayList<String> dateListCurrentOnTheWeek(){
         for (LocalDate x : listDate) {
-            if (x.getMonth().equals(currentDate.getMonth())&&x.getDayOfMonth() >= beginOfTheWeek()&& x.getDayOfMonth() < (beginOfTheWeek()+7)) {
+            if (x.isAfter(beginOfTheWeek().minusDays(1))&&x.isBefore(endOfWeek().plusDays(1))) {
                 strDate.add(dtf.format(x));
             }
         }
         return strDate;
-
     }
 
     }

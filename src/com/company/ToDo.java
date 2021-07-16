@@ -1,19 +1,14 @@
 package com.company;
 
-
-import com.exception.IncorrectFormatDateException;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 
 public class ToDo implements Serializable {
 
 
-   private Map<String, List<Task>> mapToDO = new HashMap<>();
+   private Map<String, List<Task>> mapToDO = new TreeMap<>();
 
     public Map<String, List<Task>> getMapToDO() {
         return mapToDO;
@@ -51,7 +46,7 @@ public class ToDo implements Serializable {
         }
     }
     public void editListOfCasesByNumber(String date, int number, String task){
-        mapToDO.get(date).add(number-1,new Task(task));
+        mapToDO.get(date).set(number-1,new Task(task));
     }
     public void deleteListByNumber(String date, int number){
         try {
@@ -77,7 +72,7 @@ public class ToDo implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //меняет статус дела по обращению к индексу
+
 
     }
     public void getStatusTaskUncompleted(String date, int number) {
@@ -86,7 +81,7 @@ public class ToDo implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //меняет статус дела по обращению к индексу
+
 
     }
 
@@ -140,13 +135,5 @@ public class ToDo implements Serializable {
             System.out.println("Нет дел на текущей неделе");
         }
     }
-
-
-
-
-
-
-
-
 
 }

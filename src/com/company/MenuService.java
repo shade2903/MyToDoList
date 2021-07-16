@@ -5,25 +5,21 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuService {
-    ToDo toDo = new ToDo();
-    DateTaskList dateTaskList = new DateTaskList();
-    Scanner in = new Scanner(System.in);
-    Scanner intask = new Scanner(System.in);
-    String choice = "";
-
-
+    private ToDo toDo = new ToDo();
+    private DateTaskList dateTaskList = new DateTaskList();
+   private Scanner in = new Scanner(System.in);
+//    private Scanner intask = new Scanner(System.in);
+    private String choice = "";
 
     public   void showMenu() throws IOException {
 
-if(MyFile.fileExist("toDoList.bin")){
+if(!MyFile.fileExist("toDoList.bin")){
         try {
             toDo.setMapToDO( MyFile.readFile());
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }}
-
-
 
         while (!choice.equals("4")) {
             System.out.println("Выберите пункт: ");
@@ -58,7 +54,7 @@ if(MyFile.fileExist("toDoList.bin")){
         System.out.println("Введите дату: dd/MM/YYYY");
         String date = dateTaskList.inPutDate();
         System.out.println("Введите задание:");
-        String task = intask.nextLine();
+        String task = in.nextLine();
         if (toDo.toDoMapIsEmpty()) {
             toDo.setMapTaskFirstValue(date, task);
         } else if (toDo.keyVerification(date)) {
@@ -69,7 +65,7 @@ if(MyFile.fileExist("toDoList.bin")){
         MyFile.serializationInFile(toDo.getMapToDO());
 
     }
-    private void menuButtonTwo(){
+    private void menuButtonTwo() throws IOException {
 
         toDo.showAllDateList();
         System.out.println("Введите дату");
@@ -88,7 +84,7 @@ if(MyFile.fileExist("toDoList.bin")){
             switch (choice) {
                 case "1":
                     System.out.println("Введите новое описание");
-                    String newTask = intask.nextLine();
+                    String newTask = in.nextLine();
                     if (toDo.taskSearchDuplicates(date1, newTask)) {
                         System.out.println("Такое дело уже есть");
                     }
@@ -109,6 +105,7 @@ if(MyFile.fileExist("toDoList.bin")){
                         default:
                             System.out.println("Не корректный ввод");
                     }
+                    MyFile.serializationInFile(toDo.getMapToDO());
                     break;
                 case "3":
                     System.out.println("Изменяем статус на выполненое");
@@ -134,7 +131,7 @@ if(MyFile.fileExist("toDoList.bin")){
             System.out.println("2.На эту неделю");
             System.out.println("3.На выбранную дату");
             System.out.println("4.Весь список");
-            System.out.println("5.Cохранить список в .txt");
+            System.out.println("5.Cохранить список в формаете txt");
             System.out.println("6.Назад");
             choice = in.nextLine();
             switch (choice) {

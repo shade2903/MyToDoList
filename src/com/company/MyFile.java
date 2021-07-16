@@ -20,7 +20,7 @@ public class MyFile {
 
     public static void saveInFileTxt(Map<String, List<Task>> map) throws IOException {
 
-        FileWriter fw = new FileWriter(createFile("test2.txt"));
+        FileWriter fw = new FileWriter(createFile("ToDoList.txt"));
 
         for (String x : map.keySet()) {
             fw.write("\t" + "Date: " + x + " \n");
