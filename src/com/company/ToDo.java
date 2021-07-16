@@ -8,7 +8,10 @@ import java.util.*;
 public class ToDo implements Serializable {
 
 
-   private Map<String, List<Task>> mapToDO = new TreeMap<>();
+   private Map<String, List<Task>> mapToDO;
+   public ToDo(){
+       mapToDO =  new TreeMap<>();
+   }
 
     public Map<String, List<Task>> getMapToDO() {
         return mapToDO;

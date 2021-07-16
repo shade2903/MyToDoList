@@ -7,11 +7,15 @@ import java.util.*;
 
 public class DateTaskList {
 
-    private ArrayList<LocalDate> listDate = new ArrayList<>();
+    private ArrayList<LocalDate> listDate;
 
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private final String text = dtf.format(LocalDateTime.now());
     private LocalDate currentDate = LocalDate.now();
+
+    public DateTaskList(){
+        listDate = new ArrayList<>();
+    }
 
     public String inPutDate() {
         String str;

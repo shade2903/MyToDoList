@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuService {
-    private ToDo toDo = new ToDo();
-    private DateTaskList dateTaskList = new DateTaskList();
-   private Scanner in = new Scanner(System.in);
-//    private Scanner intask = new Scanner(System.in);
+    private ToDo toDo ;
+    private DateTaskList dateTaskList;
+   private Scanner in;
     private String choice = "";
+    public MenuService(){
+        this.toDo = new ToDo();
+        this.dateTaskList = new DateTaskList();
+        this.in = new Scanner(System.in);
+    }
 
     public   void showMenu() throws IOException {
 
