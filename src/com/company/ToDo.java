@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ToDo implements Serializable {
 
 
-   private Map<String, List<Task>> mapToDO = new TreeMap<>();
+   private Map<String, List<Task>> mapToDO = new HashMap<>();
 
     public Map<String, List<Task>> getMapToDO() {
         return mapToDO;
@@ -29,7 +29,7 @@ public class ToDo implements Serializable {
     }
 
     public void printTasklist()  {
-        mapToDO.keySet().stream().sorted().collect(Collectors.toList());
+
         for(String x : mapToDO.keySet()) {
             System.out.println("\t"+"Date: "+ x);
             for (int i = 0; i < mapToDO.get(x).size(); i++) {
@@ -40,7 +40,7 @@ public class ToDo implements Serializable {
     }
 
     public void showTaskListByDate(String date){
-        mapToDO.keySet().stream().sorted().collect(Collectors.toList());
+
         try {
             for (int i = 0; i < mapToDO.get(date).size(); i++) {
                 System.out.println(i+1+". "+mapToDO.get(date).get(i).toString());

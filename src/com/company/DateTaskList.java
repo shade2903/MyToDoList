@@ -71,7 +71,7 @@ public class DateTaskList {
 
     public ArrayList<String> dateListCurrentOnTheWeek(){
         for (LocalDate x : listDate) {
-            if (x.getDayOfMonth() >= beginOfTheWeek()&& x.getDayOfMonth() < (beginOfTheWeek()+7)) {
+            if (x.getMonth().equals(currentDate.getMonth())&&x.getDayOfMonth() >= beginOfTheWeek()&& x.getDayOfMonth() < (beginOfTheWeek()+7)) {
                 strDate.add(dtf.format(x));
             }
         }
