@@ -45,7 +45,7 @@ public class ToDo implements Serializable {
 
             }
         } catch (Exception e) {
-            System.out.println("Нет текущих задач на сегодня");
+            System.out.println("No current tasks for today");
         }
     }
     public void editListOfCasesByNumber(String date, int number, String task){
@@ -123,7 +123,7 @@ public class ToDo implements Serializable {
 
     }
     public void showAllDateList(){
-        System.out.println("Список всех дат в списке: ");
+        System.out.println("List of all dates in the list: ");
         System.out.println(mapToDO.keySet());
 
     }
@@ -135,7 +135,7 @@ public class ToDo implements Serializable {
                 showTaskListByDate(x);
             }
         }else{
-            System.out.println("Нет дел на текущей неделе");
+            System.out.println("No cases this week");
         }
     }
 

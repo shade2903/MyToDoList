@@ -26,11 +26,11 @@ if(!MyFile.fileExist("toDoList.bin")){
         }}
 
         while (!choice.equals("4")) {
-            System.out.println("Выберите пункт: ");
-            System.out.println("1.Добавить задание");
-            System.out.println("2.Выбрать задание");
-            System.out.println("3.Показать список дел");
-            System.out.println("4.Завершить работу");
+            System.out.println("Select  item: ");
+            System.out.println("1.Add task");
+            System.out.println("2.Choose task");
+            System.out.println("3.Show to-do list");
+            System.out.println("4.To finish work");
             choice = in.nextLine();
             switch (choice) {
                 case "1":
@@ -43,10 +43,10 @@ if(!MyFile.fileExist("toDoList.bin")){
                     menuButtonThree();
                     break;
                 case "4":
-                    System.out.println("Завершение работы");
+                    System.out.println("Shutdown");
                     break;
                 default:
-                    System.out.println("Не корректный ввод команды");
+                    System.out.println("incorrect input");
 
 
             }
@@ -55,9 +55,9 @@ if(!MyFile.fileExist("toDoList.bin")){
 
     }
     private void menuButtonOne() throws IOException {
-        System.out.println("Введите дату: dd/MM/YYYY");
+        System.out.println("Enter date: dd/MM/YYYY");
         String date = dateTaskList.inPutDate();
-        System.out.println("Введите задание:");
+        System.out.println("Enter task:");
         String task = in.nextLine();
         if (toDo.toDoMapIsEmpty()) {
             toDo.setMapTaskFirstValue(date, task);
@@ -72,58 +72,58 @@ if(!MyFile.fileExist("toDoList.bin")){
     private void menuButtonTwo() throws IOException {
 
         toDo.showAllDateList();
-        System.out.println("Введите дату");
+        System.out.println("Enter date");
         String date1 = dateTaskList.inPutDate();
         toDo.showTaskListByDate(date1);
-        System.out.println("Введите номер задания:");
+        System.out.println("enter  task number:");
         int number = in.nextInt();
         toDo.getTaskNumber(date1, number);
         while (!choice.equals("5")) {
-            System.out.println("1.Изменить  описание");
-            System.out.println("2.Удалить");
-            System.out.println("3.Пометить как выполненое");
-            System.out.println("4.Пометить как  не выполненое");
-            System.out.println("5.Назад");
+            System.out.println("1.Change description");
+            System.out.println("2.Delete");
+            System.out.println("3.Mark as done");
+            System.out.println("4.Mark as undone");
+            System.out.println("5.Back");
             choice = in.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("Введите новое описание");
+                    System.out.println("Enter a new description");
                     String newTask = in.nextLine();
                     if (toDo.taskSearchDuplicates(date1, newTask)) {
-                        System.out.println("Такое дело уже есть");
+                        System.out.println("This task already exists");
                     }
                     toDo.editListOfCasesByNumber(date1, number, newTask);
                     break;
                 case "2":
-                    System.out.println("Вы действительно хотите удалить выбранное дело?(y/n)");
+                    System.out.println("Are you sure you want to delete the selected task?(y/n)");
                     String answer = in.nextLine();
 
                     switch (answer) {
                         case "y":
                             toDo.deleteListByNumber(date1, number);
-                            System.out.println("Дело удалено");
+                            System.out.println("Task deleted");
                             break;
                         case "n":
-                            System.out.println("Отмена");
+                            System.out.println("Cancel");
                             break;
                         default:
-                            System.out.println("Не корректный ввод");
+                            System.out.println("Incorrect input");
                     }
                     MyFile.serializationInFile(toDo.getMapToDO());
                     break;
                 case "3":
-                    System.out.println("Изменяем статус на выполненое");
+                    System.out.println("Change the status to completed");
                     toDo.getStatusTaskCompleted(date1, number);
                     break;
                 case "4":
-                    System.out.println("Изменяем статус на невыполненое");
+                    System.out.println("Change the status to not completed");
                     toDo.getStatusTaskUncompleted(date1, number);
                     break;
                 case "5":
-                    System.out.println("Назад");
+                    System.out.println("Back");
                     break;
                 default:
-                    System.out.println("Не корректный ввод команды");
+                    System.out.println("incorrect input command");
 
             }
         }
@@ -131,41 +131,41 @@ if(!MyFile.fileExist("toDoList.bin")){
     private void menuButtonThree() throws IOException {
         dateTaskList.ParseAllStringOfDate(toDo.getMapToDO());
         while (!choice.equals("6")) {
-            System.out.println("1.На сегодня");
-            System.out.println("2.На эту неделю");
-            System.out.println("3.На выбранную дату");
-            System.out.println("4.Весь список");
-            System.out.println("5.Cохранить список в формаете txt");
-            System.out.println("6.Назад");
+            System.out.println("1.On today");
+            System.out.println("2.On that week");
+            System.out.println("3.On the selected date");
+            System.out.println("4.All list");
+            System.out.println("5.Save list in txt");
+            System.out.println("6.Back");
             choice = in.nextLine();
             switch (choice) {
                 case "1":
-                    System.out.println("На сегодня:");
+                    System.out.println("On today:");
                     toDo.showTaskListByDate(dateTaskList.CurrentDate());
                     break;
                 case "2":
-                    System.out.println("На эту неделю:");
+                    System.out.println("On that week:");
                     toDo.showDateCurrentOfWeek(dateTaskList.dateListCurrentOnTheWeek());
                     break;
                 case "3":
-                    System.out.println("Введите дату");
+                    System.out.println("Input day");
                     String date3 = in.nextLine();
                     toDo.showTaskListByDate(date3);
                     break;
                 case "4":
-                    System.out.println("Весь список:");
+                    System.out.println("All list:");
                     toDo.printTasklist();
 
                     break;
                 case "5":
-                    System.out.println("Назад");
+                    System.out.println("Back");
                     break;
                 case "6":
-                    System.out.println("Cохранение списка дел в txt формате");
+                    System.out.println("Save to-do list in txt format");
                     MyFile.saveInFileTxt(toDo.getMapToDO());
                     break;
                 default:
-                    System.out.println("Не корректный ввод команды");
+                    System.out.println("Incorrect input command");
                     MyFile.saveInFileTxt(toDo.getMapToDO());
             }
         }

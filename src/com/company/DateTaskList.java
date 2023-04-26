@@ -26,7 +26,7 @@ public class DateTaskList {
             return str;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Повторно введите дату в формате: dd/MM/yyyy");
+            System.out.println("Repeat enter date in format: dd/MM/yyyy");
             return inPutDate();
 
         }
